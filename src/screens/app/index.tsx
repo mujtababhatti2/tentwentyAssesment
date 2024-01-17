@@ -1,6 +1,7 @@
 import List from "./list";
-
+import MovieDetail from "./movieDetail";
 
 export {
-    List
+    List,
+    MovieDetail
 }

@@ -4,7 +4,9 @@ import { scale, vtscale } from '../../assets/constants/pixelRatio'
 import {
     MaterialIndicator,
 } from 'react-native-indicators';
-import { responsiveHeight } from 'react-native-responsive-dimensions';
+import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
+import { fontFamily } from '../../assets/utilities/font';
+import { colors } from '../../assets/utilities';
 interface loadingProps {
     loading: boolean
     title: string
@@ -19,8 +21,8 @@ export const LoadingComp = ({
             {loading ? (
                 <View style={styles.mainView}>
                     <View style={styles.loadingView}>
-                    <MaterialIndicator color='white' />
-                    <Text style={styles.loading}>{title}</Text>
+                        <MaterialIndicator color={colors.secondary} />
+                        <Text style={styles.loading}>{title}</Text>
                     </View>
                 </View>
             ) : null}
@@ -32,20 +34,22 @@ export const LoadingComp = ({
 const styles = StyleSheet.create({
     mainView: {
         height: '100%',
-        backgroundColor: "rgba(255,255,255,0.2)",
+        backgroundColor: "rgba(0,0,0,0.2)",
         alignItems: "center",
         justifyContent: "center"
     },
     loadingView: {
         width: scale(150),
         height: scale(100),
-        backgroundColor: "rgba(0,0,0,0.8)",
+        backgroundColor: "rgba(255,255,255,0.8)",
         borderRadius: scale(10),
-        alignItems:"center",
+        alignItems: "center",
         paddingVertical: responsiveHeight(1)
     },
-    loading:{
-        color:"white"
+    loading: {
+        color: colors.secondary,
+        fontFamily: fontFamily.appTextRegular,
+        fontSize: responsiveFontSize(1.8)
     }
 })
 

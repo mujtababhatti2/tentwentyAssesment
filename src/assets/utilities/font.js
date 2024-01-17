@@ -1,10 +1,10 @@
 const fontFamily = {
-    appTextBold: "Nunito-Bold",
-    appTextItalic: 'Nunito-Italic',
-    appTextSemiBold: "Nunito-SemiBold",
-    appTextRegular: "Nunito-Regular",
-    appTextMedium: "Nunito-Medium",
-    appTextLight: "Nunito-Light",
+    appTextBold: "Poppins-Bold",
+    appTextItalic: 'Poppins-Italic',
+    appTextSemiBold: "Poppins-SemiBold",
+    appTextRegular: "Poppins-Regular",
+    appTextMedium: "Poppins-Medium",
+    appTextLight: "Poppins-Light",
 
 }
 export { fontFamily }

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { colors } from '../../assets/utilities'
 
 interface props {
     navigation: any
@@ -26,11 +27,11 @@ export default Splash
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "black",
+        backgroundColor: colors.primary,
         alignItems: "center",
         justifyContent: "center"
     },
     Assesment: {
-        color: "white"
+        color: "black"
     }
 })
