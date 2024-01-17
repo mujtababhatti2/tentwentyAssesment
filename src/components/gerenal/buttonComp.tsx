@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     titleText: {
         color: 'white',
         fontSize: responsiveFontSize(2),
-        fontFamily: fontFamily.appTextMedium,
+        fontFamily: fontFamily.appTextSemiBold,
         alignSelf: "center"
     }
 })

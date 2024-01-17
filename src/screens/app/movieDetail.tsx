@@ -1,14 +1,14 @@
-import { ImageBackground, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors } from '../../assets/utilities'
 import { LoadingComp } from '../../components/gerenal/loadingComp'
 import { ApiInstance, api_key } from '../../service/apiInstance'
-import { SimpleHeader } from '../../components/gerenal/header'
-import LinearGradient from 'react-native-linear-gradient'
-import { scale, vtscale } from '../../assets/constants/pixelRatio'
 import { fontFamily } from '../../assets/utilities/font'
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
-import { ButtonComp } from '../../components/gerenal/buttonComp'
+import { MovieListComp } from '../../components/feeds/movieListComp'
+import { MovieDetailsComp } from '../../components/feeds/movieDetails'
+import { GenersComp } from '../../components/feeds/genersComp'
+import { OverViewComp } from '../../components/feeds/overViewComp'
 
 interface detailProps {
     navigation: any
@@ -55,47 +55,36 @@ const MovieDetail = ({ navigation, route }: detailProps) => {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <StatusBar
                 translucent={true}
                 barStyle={'light-content'}
                 backgroundColor={'transparent'}
             />
             <LoadingComp loading={loading} title='Fetching...' />
-            <View style={styles.imageView}>
-                <ImageBackground
-                    source={{ uri: `https://image.tmdb.org/t/p/w500${movieData?.backdrop_path}` }}
-                    style={styles.image}
-                    resizeMode='cover'
-
-                >
-                    <SimpleHeader
-                        title={"Watch"}
-                        onPress={() => navigation.goBack()}
-                    />
-                    <LinearGradient
-                        style={styles.linear}
-                        colors={["rgba(0,0,0,0)", "rgba(0,0,0,1)"]}>
-                        <View style={styles.textView}>
-                            <Text style={styles.title}>{movieData?.title}</Text>
-                            <Text style={styles.date}>{`In Theaters ${handleDate(movieData?.release_date)}`}</Text>
-                            <ButtonComp
-                                title='Get Tickets'
-                                btnStyle={styles.btn}
-                            />
-                            <ButtonComp
-                                title='Watch Trailer'
-                                btnStyle={styles.btnstyle}
-                                icon={true}
-                                iconName={'play'}
-                                iconType='font-awesome'
-                            />
-                        </View>
-                    </LinearGradient>
-                </ImageBackground>
+            <View style={{ backgroundColor: "red" }}>
+                <MovieDetailsComp
+                    image={movieData?.backdrop_path}
+                    onPress={() => navigation.goBack()}
+                    title={movieData?.title}
+                    releaseDate={handleDate(movieData?.release_date)}
+                    ticketPress={() => { }}
+                    watchPress={() => { navigation.navigate('VideoPlayer', { movieId: movieData?.id }) }}
+                />
             </View>
-
-        </View>
+            <View style={styles.wrapper}>
+                <GenersComp
+                    header='Genres'
+                    data={movieData?.genres}
+                />
+                <View style={styles.divider} />
+                <OverViewComp
+                    title='Overview'
+                    desc={movieData?.overview}
+                />
+            </View>
+            <View style={{ height: responsiveHeight(10) }} />
+        </ScrollView>
     )
 }
 
@@ -103,47 +92,18 @@ export default MovieDetail
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: colors.primary,
-        flex: 1
     },
-    image: {
-        width: '100%',
-        height: '100%',
-    },
-    linear: {
-        width: '100%',
-        height: '75%',
-    },
-    imageView: {
-        width: '100%',
-        height: "60%"
-    },
-    title: {
-        fontFamily: fontFamily.appTextSemiBold,
-        color: colors.white,
-        fontSize: responsiveFontSize(2)
-    },
-    textView: {
+    wrapper: {
+        width: "80%",
         alignSelf: "center",
-        alignItems: 'center',
-        justifyContent: "flex-end",
-        height: "90%",
-    },
-    date: {
-        fontFamily: fontFamily.appTextMedium,
-        color: colors.white,
-        fontSize: responsiveFontSize(2),
-        marginTop: 10
-    },
-    btn: {
-        width: responsiveWidth(70),
         marginTop: responsiveHeight(3)
     },
-    btnstyle: {
-        backgroundColor: "transparent",
-        borderWidth: 1,
-        width: responsiveWidth(70),
-        borderColor: colors.btnColor,
-        marginTop:responsiveHeight(2)
+    divider: {
+        width: '100%',
+        height: 1,
+        backgroundColor: 'lightgrey',
+        marginVertical: responsiveHeight(1)
     }
 })
