@@ -1,13 +1,18 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 import React from 'react'
 import { vtscale } from '../../assets/constants/pixelRatio'
 import { fontFamily } from '../../assets/utilities/font'
-import { responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions'
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import { Icon, colors } from 'react-native-elements'
+import { Textinput } from './textinput'
 
 interface headerProps {
     title: string | any
     onPress: () => void
+    onPressSearch: () => void
+    flag: boolean
+    onChangeText: any
+    value: any
 }
 
 interface simpleProps {
@@ -18,24 +23,47 @@ interface simpleProps {
 
 
 export const HeaderComp = ({
-    title
+    title,
+    flag,
+    onPress,
+    onPressSearch,
+    onChangeText,
+    value
 }: headerProps) => {
     return (
         <View style={styles.mainView}>
             <View style={styles.innerView}>
-                <View style={styles.searchView}>
-                    <Text style={styles.titleText}>{title}</Text>
-                    <TouchableOpacity>
-                        <Icon
-                            name='search1'
-                            type='antdesign'
-                            size={responsiveFontSize(2.5)}
+                {
+                    flag ? (
+                       <Textinput
+                       iconName={'search'}
+                       iconType='feather'
+                       eye={true}
+                       passType='entypo'
+                       passname={'cross'}
+                       onPress={onPressSearch}
+                       mainStyle={styles.inputView}
+                       inputStyle={styles.inputStyle}
+                       placeholder='Search ...'
+                       onChangeText={onChangeText}
+                       value={value}
+                       />
+                    ) : (
+                        <View style={styles.searchView}>
+                            <Text style={styles.titleText}>{title}</Text>
+                            <TouchableOpacity onPress={onPress}>
+                                <Icon
+                                    name='search1'
+                                    type='antdesign'
+                                    size={responsiveFontSize(2.5)}
 
-                        />
-                    </TouchableOpacity>
-                </View>
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    )
+                }
             </View>
-        </View>
+        </View >
     )
 }
 
@@ -97,6 +125,15 @@ const styles = StyleSheet.create({
         fontFamily: fontFamily.appTextMedium,
         fontSize: responsiveFontSize(2),
         marginLeft: responsiveWidth(3)
+    },
+    inputView:{
+        borderRadius: responsiveWidth(8),
+        paddingHorizontal: responsiveWidth(3)
+    },
+    inputStyle:{
+        height: responsiveHeight(4.5),
+        width: responsiveWidth(70),
+        
     }
 })
 
