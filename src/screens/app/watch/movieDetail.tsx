@@ -1,14 +1,14 @@
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { colors } from '../../assets/utilities'
-import { LoadingComp } from '../../components/gerenal/loadingComp'
-import { ApiInstance, api_key } from '../../service/apiInstance'
-import { fontFamily } from '../../assets/utilities/font'
+import { colors } from '../../../assets/utilities'
+import { LoadingComp } from '../../../components/gerenal/loadingComp'
+import { ApiInstance, api_key } from '../../../service/apiInstance'
+import { fontFamily } from '../../../assets/utilities/font'
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
-import { MovieListComp } from '../../components/feeds/movieListComp'
-import { MovieDetailsComp } from '../../components/feeds/movieDetails'
-import { GenersComp } from '../../components/feeds/genersComp'
-import { OverViewComp } from '../../components/feeds/overViewComp'
+import { MovieListComp } from '../../../components/feeds/movieListComp'
+import { MovieDetailsComp } from '../../../components/feeds/movieDetails'
+import { GenersComp } from '../../../components/feeds/genersComp'
+import { OverViewComp } from '../../../components/feeds/overViewComp'
 
 interface detailProps {
     navigation: any

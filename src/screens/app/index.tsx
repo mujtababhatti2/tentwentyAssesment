@@ -1,8 +1,10 @@
-import List from "./list";
-import MovieDetail from "./movieDetail";
-import VideoPlay from "./videoPlayer";
+import List from "./watch/list";
+import MovieDetail from "./watch/movieDetail";
+import VideoPlay from "./watch/videoPlayer";
+import MoreScreen from "./more";
 export {
     List,
     MovieDetail,
-    VideoPlay
+    VideoPlay,
+    MoreScreen
 }

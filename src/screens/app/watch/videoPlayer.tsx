@@ -1,9 +1,9 @@
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import Orientation from 'react-native-orientation';
-import { ApiInstance, api_key } from '../../service/apiInstance';
-import { LoadingComp } from '../../components/gerenal/loadingComp';
-import { SimpleHeader } from '../../components/gerenal/header';
+import { ApiInstance, api_key } from '../../../service/apiInstance';
+import { LoadingComp } from '../../../components/gerenal/loadingComp';
+import { SimpleHeader } from '../../../components/gerenal/header';
 import VideoPlayer from 'react-native-video-player';
 
 
