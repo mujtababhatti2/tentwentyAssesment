@@ -1,6 +1,5 @@
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import Orientation from 'react-native-orientation';
 import { ApiInstance, api_key } from '../../../service/apiInstance';
 import { LoadingComp } from '../../../components/gerenal/loadingComp';
 import { SimpleHeader } from '../../../components/gerenal/header';
@@ -36,7 +35,6 @@ const VideoPlay = ({ navigation, route }: props) => {
                     let result = res?.data?.results
                     let vid = result?.filter((v: any) => v.site === "YouTube" && v.type == 'Trailer')
                     setVideo(vid)
-                    Orientation.lockToLandscape();
                 }).catch(err => {
                     console.log(err);
                 }).finally(() => {
